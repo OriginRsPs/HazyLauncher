@@ -25,10 +25,10 @@ echo "$LINUX_AARCH64_CHKSUM linux_aarch64_jre.tar.gz" | sha256sum -c
 # Note: Host umask may have checked out this directory with g/o permissions blank
 chmod -R u=rwX,go=rX appimage
 # ...ditto for the build process
-chmod 644 target/Hazy.jar
+chmod 644 target/Valor.jar
 
-cp native/build-aarch64/src/Hazy build/linux-aarch64/
-cp target/Hazy.jar build/linux-aarch64/
+cp native/build-aarch64/src/Valor build/linux-aarch64/
+cp target/Valor.jar build/linux-aarch64/
 cp packr/linux-aarch64-config.json build/linux-aarch64/config.json
 cp target/filtered-resources/app.desktop build/linux-aarch64/
 cp appimage/app.png build/linux-aarch64/
@@ -41,10 +41,10 @@ mkdir -p jre/lib/amd64/server/
 ln -s ../../server/libjvm.so jre/lib/amd64/server/ # packr looks for libjvm at this hardcoded path
 
 # Symlink AppRun -> RuneLite
-ln -s Hazy AppRun
+ln -s Valor AppRun
 
 # Ensure RuneLite is executable to all users
-chmod 755 Hazy
+chmod 755 Valor
 popd
 
 if ! [ -f appimagetool-x86_64.AppImage ] ; then
@@ -65,4 +65,4 @@ echo "d2624ce8cc2c64ef76ba986166ad67f07110cdbf85112ace4f91611bc634c96a  runtime-
 ARCH=arm_aarch64 ./appimagetool-x86_64.AppImage \
 	--runtime-file runtime-aarch64  \
 	build/linux-aarch64/ \
-	Hazy-aarch64.AppImage
+	Valor-aarch64.AppImage

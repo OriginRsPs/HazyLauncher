@@ -1,10 +1,10 @@
 [Setup]
-AppName=Hazy Launcher
-AppPublisher=Hazy
-UninstallDisplayName=Hazy
+AppName=Valor Launcher
+AppPublisher=Valor
+UninstallDisplayName=Valor
 AppVersion=${project.version}
 AppSupportURL=https://zaryte.io/
-DefaultDirName={localappdata}\Hazy
+DefaultDirName={localappdata}\Valor
 
 ; ~30 mb for the repo the launcher downloads
 ExtraDiskSpaceRequired=30000000
@@ -14,20 +14,20 @@ PrivilegesRequired=lowest
 WizardSmallImageFile=${basedir}/app_small.bmp
 WizardImageFile=${basedir}/left.bmp
 SetupIconFile=${basedir}/app.ico
-UninstallDisplayIcon={app}\Hazy.exe
+UninstallDisplayIcon={app}\Valor.exe
 
 Compression=lzma2
 SolidCompression=yes
 
 OutputDir=${basedir}
-OutputBaseFilename=HazySetupAArch64
+OutputBaseFilename=ValorSetupAArch64
 
 [Tasks]
 Name: DesktopIcon; Description: "Create a &desktop icon";
 
 [Files]
-Source: "${basedir}\build\win-aarch64\Hazy.exe"; DestDir: "{app}"
-Source: "${basedir}\build\win-aarch64\Hazy.jar"; DestDir: "{app}"
+Source: "${basedir}\build\win-aarch64\Valor.exe"; DestDir: "{app}"
+Source: "${basedir}\build\win-aarch64\Valor.jar"; DestDir: "{app}"
 Source: "${basedir}\build\win-aarch64\launcher_aarch64.dll"; DestDir: "{app}"
 Source: "${basedir}\build\win-aarch64\config.json"; DestDir: "{app}"
 Source: "${basedir}\build\win-aarch64\jre\*"; DestDir: "{app}\jre"; Flags: recursesubdirs
@@ -37,23 +37,23 @@ Source: "${basedir}\app_small.bmp"; DestDir: "{app}"
 
 [Icons]
 ; start menu
-Name: "{userprograms}\Hazy\Hazy"; Filename: "{app}\Hazy.exe"
-Name: "{userprograms}\Hazy\Hazy (configure)"; Filename: "{app}\Hazy.exe"; Parameters: "--configure"
-Name: "{userprograms}\Hazy\Hazy (safe mode)"; Filename: "{app}\Hazy.exe"; Parameters: "--safe-mode"
-Name: "{userdesktop}\Hazy"; Filename: "{app}\Hazy.exe"; Tasks: DesktopIcon
+Name: "{userprograms}\Valor\Valor"; Filename: "{app}\Valor.exe"
+Name: "{userprograms}\Valor\Valor (configure)"; Filename: "{app}\Valor.exe"; Parameters: "--configure"
+Name: "{userprograms}\Valor\Valor (safe mode)"; Filename: "{app}\Valor.exe"; Parameters: "--safe-mode"
+Name: "{userdesktop}\Valor"; Filename: "{app}\Valor.exe"; Tasks: DesktopIcon
 
 [Run]
-Filename: "{app}\Hazy.exe"; Parameters: "--postinstall"; Flags: nowait
-Filename: "{app}\Hazy.exe"; Description: "&Open Hazy"; Flags: postinstall skipifsilent nowait
+Filename: "{app}\Valor.exe"; Parameters: "--postinstall"; Flags: nowait
+Filename: "{app}\Valor.exe"; Description: "&Open Valor"; Flags: postinstall skipifsilent nowait
 
 [InstallDelete]
 ; Delete the old jvm so it doesn't try to load old stuff with the new vm and crash
 Type: filesandordirs; Name: "{app}\jre"
 ; previous shortcut
-Type: files; Name: "{userprograms}\Hazy.lnk"
+Type: files; Name: "{userprograms}\Valor.lnk"
 
 [UninstallDelete]
-Type: filesandordirs; Name: "{%USERPROFILE}\.hazy\repository2"
+Type: filesandordirs; Name: "{%USERPROFILE}\.valor\repository2"
 ; includes install_id, settings, etc
 Type: filesandordirs; Name: "{app}"
 

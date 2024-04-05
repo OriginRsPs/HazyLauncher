@@ -21,18 +21,18 @@ fi
 
 echo "$WIN64_CHKSUM win64_jre.zip" | sha256sum -c
 
-cp native/build-x64/src/Release/Hazy.exe build/win-x64/
-cp target/Hazy.jar build/win-x64/
+cp native/build-x64/src/Release/Valor.exe build/win-x64/
+cp target/Valor.jar build/win-x64/
 cp packr/win-x64-config.json build/win-x64/config.json
 cp liblauncher/build64/Release/launcher_amd64.dll build/win-x64/
 
 unzip win64_jre.zip
 mv jdk-$WIN64_VERSION-jre build/win-x64/jre
 
-echo Hazy.exe 64bit sha256sum
-sha256sum build/win-x64/Hazy.exe
+echo Valor.exe 64bit sha256sum
+sha256sum build/win-x64/Valor.exe
 
-dumpbin //HEADERS build/win-x64/Hazy.exe
+dumpbin //HEADERS build/win-x64/Valor.exe
 
 # We use the filtered iss file
 iscc target/filtered-resources/app.iss

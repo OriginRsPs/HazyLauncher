@@ -62,9 +62,9 @@ jobs:
         with:
           name: windows
           path: |
-            HazySetup.exe
-            HazySetup32.exe
-            HazySetupAArch64.exe
+            ValorSetup.exe
+            ValorSetup32.exe
+            ValorSetupAArch64.exe
           if-no-files-found: error
   linux:
     runs-on: ubuntu-20.04
@@ -100,14 +100,14 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: jar
-          path: target/Hazy.jar
+          path: target/Valor.jar
           if-no-files-found: error
       - uses: actions/upload-artifact@v3
         with:
           name: linux
           path: |
-            Hazy.AppImage
-            Hazy-aarch64.AppImage
+            Valor.AppImage
+            Valor-aarch64.AppImage
           if-no-files-found: error
   macos:
     runs-on: macos-11
@@ -153,13 +153,13 @@ jobs:
         run: ./build-osx-aarch64.sh --build --dmg
       # tar app to keep permissions correct
       - name: tar app
-        run: tar -cf app.tar build/macos-x64/Hazy.app build/macos-aarch64/Hazy.app build-osx-x64.sh build-osx-aarch64.sh osx/signing.entitlements
+        run: tar -cf app.tar build/macos-x64/Valor.app build/macos-aarch64/Valor.app build-osx-x64.sh build-osx-aarch64.sh osx/signing.entitlements
       - uses: actions/upload-artifact@v3
         with:
           name: macos-dmg
           path: |
-            Hazy-x64.dmg
-            Hazy-aarch64.dmg
+            Valor-x64.dmg
+            Valor-aarch64.dmg
           if-no-files-found: error
       - uses: actions/upload-artifact@v3
         with:

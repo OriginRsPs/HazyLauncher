@@ -11,9 +11,9 @@ BEGIN
     BEGIN
         BLOCK "040904B0"
         BEGIN
-            VALUE "FileDescription",  "Hazy"
-            VALUE "OriginalFilename", "Hazy.exe"
-            VALUE "ProductName",      "Hazy Launcher"
+            VALUE "FileDescription",  "Valor"
+            VALUE "OriginalFilename", "Valor.exe"
+            VALUE "ProductName",      "Valor Launcher"
         END
     END
 

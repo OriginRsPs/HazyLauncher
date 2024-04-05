@@ -2,7 +2,7 @@
 
 set -e
 
-APPBASE="build/macos-aarch64/Hazy.app"
+APPBASE="build/macos-aarch64/Valor.app"
 
 build() {
     pushd native
@@ -38,8 +38,8 @@ build() {
 
     mkdir -p $APPBASE/Contents/{MacOS,Resources}
 
-    cp native/build-aarch64/src/Hazy $APPBASE/Contents/MacOS/
-    cp target/Hazy.jar $APPBASE/Contents/Resources/
+    cp native/build-aarch64/src/Valor $APPBASE/Contents/MacOS/
+    cp target/Valor.jar $APPBASE/Contents/Resources/
     cp packr/macos-aarch64-config.json $APPBASE/Contents/Resources/config.json
     cp target/filtered-resources/Info.plist $APPBASE/Contents/
     cp osx/app.icns $APPBASE/Contents/Resources/icons.icns
@@ -48,12 +48,12 @@ build() {
     mkdir $APPBASE/Contents/Resources/jre
     mv jdk-$MAC_AARCH64_VERSION-jre/Contents/Home/* $APPBASE/Contents/Resources/jre
 
-    echo Setting world execute permissions on Hazy
+    echo Setting world execute permissions on Valor
     pushd $APPBASE
-    chmod g+x,o+x Contents/MacOS/Hazy
+    chmod g+x,o+x Contents/MacOS/Valor
     popd
 
-    otool -l $APPBASE/Contents/MacOS/Hazy
+    otool -l $APPBASE/Contents/MacOS/Valor
 }
 
 dmg() {
@@ -62,24 +62,24 @@ dmg() {
 
     # create-dmg exits with an error code due to no code signing, but is still okay
     create-dmg $APPBASE . || true
-    mv Hazy\ *.dmg Hazy-aarch64.dmg
+    mv Valor\ *.dmg Valor-aarch64.dmg
 
     # dump for CI
-    hdiutil imageinfo Hazy-aarch64.dmg
+    hdiutil imageinfo Valor-aarch64.dmg
 
-    if ! hdiutil imageinfo Hazy-aarch64.dmg | grep -q "Format: ULFO" ; then
+    if ! hdiutil imageinfo Valor-aarch64.dmg | grep -q "Format: ULFO" ; then
         echo Format of dmg is not ULFO
         exit 1
     fi
 
-    if ! hdiutil imageinfo Hazy-aarch64.dmg | grep -q "Apple_HFS" ; then
+    if ! hdiutil imageinfo Valor-aarch64.dmg | grep -q "Apple_HFS" ; then
         echo Filesystem of dmg is not Apple_HFS
         exit 1
     fi
 
     # Notarize app
-    if xcrun notarytool submit Hazy-aarch64.dmg --wait --keychain-profile "AC_PASSWORD" ; then
-        xcrun stapler staple Hazy-aarch64.dmg
+    if xcrun notarytool submit Valor-aarch64.dmg --wait --keychain-profile "AC_PASSWORD" ; then
+        xcrun stapler staple Valor-aarch64.dmg
     fi
 }
 
